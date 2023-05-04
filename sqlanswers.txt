@@ -1,0 +1,78 @@
+// The anwers are not cross checked with exact solutions, feel free to  reach me out if there are any rectifications in the solutions
+1.SELECT 
+    App, Rating
+FROM
+    app_data
+ORDER BY rating DESC limit 10;
+
+#2
+SELECT 
+    App, Installs, Reviews
+FROM
+    app_data
+ORDER BY Reviews DESC limit 5;
+
+#3
+SELECT 
+    App, Category, Reviews
+FROM
+    app_data
+ORDER BY Reviews DESC
+LIMIT 1;
+
+# 4. 
+select sum(Installs * Price) as Revenue
+from app_data
+where price > 0  AND Installs > 0 AND Type = 'Paid'; 
+
+#5.
+select category,sum(Installs) as 'Installs' 
+from apps
+group by Category
+order by noOfInstalls desc
+limit 1;
+
+#6
+select genres, count(app) as 'publishedApps'
+from apps
+group by genres
+order by publishedApps desc
+limit 1;
+
+#7
+select distinct(app) as 'Name of the game',Installs
+from apps
+where category = 'GAME'
+order by Installs desc;
+
+#8
+select Type, count(*) as count
+from apps
+group by Type;
+
+#9
+select app,reviews
+from apps
+where Category = 'dating'
+order by Reviews desc
+limit 1;
+
+#10
+select Sentiment,count(Sentiment) from reviews
+where App IN ('"10 Best Foods for You"') AND Sentiment IN('Positive','Negative')
+group by Sentiment;
+
+#11
+select App, Translated_Review, Sentiment_Polarity, Sentiment_Subjectivity
+from reviews
+where Sentiment_Polarity = 1 AND Sentiment_Subjectivity = 1 AND App = '"ASUS SuperNote"';
+
+#12
+select app, translated_Review, Sentiment from reviews
+where app  = '"Abs Training-Burn belly fat"' and Sentiment = 'neutral';
+
+#13
+select Translated_Review, Sentiment_Polarity, Sentiment_Subjectivity
+from reviews
+where App = '"ASUS SuperNote"' and Sentiment='Negative';
+
